@@ -1,0 +1,10 @@
+trigger ActiveContactTriggers on Contact (after insert, after update, after delete, after undelete) {
+    if(Trigger.isAfter&&(Trigger.isInsert||Trigger.isUpdate||Trigger.isUndelete)){
+        ActiveContactHandllerClass.ActiveContacts(Trigger.new);
+
+    }
+    if(Trigger.isAfter&&(Trigger.isDelete)){
+        ActiveContactHandllerClass.ActiveContacts(Trigger.old);
+
+    }
+}
